@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import connectDB from "./config/db.js";
+import productRoutes from "./routes/productRoutes.js"
+import connectDB from "./db.js"
 
 dotenv.config();
 
@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 //2 routes for users and products
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
+
 
 //global error handler
 app.use((error, req, res, next) => {
