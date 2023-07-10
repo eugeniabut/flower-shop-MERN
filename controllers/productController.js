@@ -1,37 +1,36 @@
-import Product from "../models/productModel.js"
+import Product from "../models/productModel.js";
 
-
-// http:/
 export const createProduct = async (req, res, next) => {
-  res.send("Welcome Product!!! ")
   try {
-    const {productName, productPrice, available, boughtdBy} = req.body;
+    const { productImage, productName, productPrice, available } = req.body;
 
     const newProduct = new Product({
       productImage,
       productName,
       productPrice,
       available,
-      boughtdBy,
     });
 
     const createdProduct = await newProduct.save();
-    console.log(createdProduct)
+    
+    if (!createdProduct) {
+      throw new Error('Failed to create product');
+    }
 
     res.status(201).json(createdProduct);
-    next();
   } catch (error) {
-    res.status(500).json({ message: 'Failed to create product' });
+    console.error('Error creating product:', error);
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const getProducts = async (req, res,next) => {
   try {
-   const allProducts = await Product.find({productName})
+   const allProducts = await Product.find()
    res.status(201).json(allProducts)
    
   } catch (err) {
-    
+    console.error('Error fetching products:', err);
    next(err)
   }
 };

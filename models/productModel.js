@@ -15,12 +15,9 @@ type:String
   },
 
   available: {
-    type: Boolean,
+    type: String,
     default: true,
   },
-  boughtdBy: {
-    type: String,
-    default: "non",
-  },
+  
 });
 export default mongoose.model("Product", productSchema);

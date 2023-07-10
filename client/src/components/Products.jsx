@@ -6,7 +6,7 @@ const Products = () => {
 
   useEffect(() => {
     // Fetch products from the backend endpoint
-    axios.get("http://localhost:4000/products/all-products")
+    axios.get("http://localhost:5000/products/all-products")
       .then((response) => setProducts(response.data))
       .catch((error) => console.error('Error fetching products:', error));
   }, []);
@@ -17,9 +17,7 @@ const Products = () => {
   };
 
   return (
-    
     <div className="products">
-
       <h1>Products</h1>
       {products.map((product) => (
         <div key={product._id} className="product-card">

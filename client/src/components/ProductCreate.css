@@ -1,0 +1,52 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  form {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 30px;
+  }
+  
+  input[type="checkbox"] {
+    margin-bottom: 30px;
+    transform: scale(2);
+  }
+  
+  button[type="submit"] {
+    background-color: #1f9023;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    border-radius: 5px;
+  }
+
+  button[type="submit"]:hover{
+    background-color:green ;
+  }
+  
+
+  

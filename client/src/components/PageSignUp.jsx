@@ -25,7 +25,7 @@ const PageSignUp = () => {
 
     try {
       await axios.post(
-        `${process.env.REACT_APP_BE_URL}/users/create-user`, data
+        "http:localhost3000/users/create-user", data
      
       );
      

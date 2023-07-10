@@ -54,11 +54,13 @@ export const loginHandler = async (req, res, next) => {
   }
 };
 
+
+
 export const passwordChangeHandler=async(req,res,next)=>{
 
   try{
       const userId =req.params.id
-  const {email,currentPassword, confirmPassword, newPassword} = req.body
+  const {userEmail,currentPassword, confirmPassword, newPassword} = req.body
   
   if(confirmPassword !== newPassword) return res.status(400).send("Invalid Credentials")
 

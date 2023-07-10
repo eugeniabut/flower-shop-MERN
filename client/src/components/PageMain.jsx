@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import heroImage from '../images/heroImage.jpg';
 import SandwichMenu from './SandwichMenu';
 import PageSignInForm from "./PageSignInForm.jsx"
-import PageSignUp from './PageSignUp.jsx';
+
 
 const PageMain = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);

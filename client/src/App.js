@@ -4,6 +4,7 @@ import PageSignInForm from './components/PageSignInForm';
 import PageSignUp from './components/PageSignUp';
 import PageMain from './components/PageMain';
 import Products from './components/Products';
+import ProductCreate from './components/ProductCreate';
 
 
 
@@ -16,7 +17,9 @@ function App() {
         <Route path='/' element={<PageMain />} />
         <Route path='/sign-in' element={<PageSignInForm />}/>
         <Route path='/sign-up' element={<PageSignUp />}/>
-        <Route path='/products' element={<Products/>} />
+        <Route path='/products/all-products' element={<Products/>} />
+        <Route path='/products/create-product' element={<ProductCreate/>} />
+        
       
         
       </Routes>
