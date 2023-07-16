@@ -1,6 +1,6 @@
-import "./PageSignInForm.css";
+import "../css/PageSignInForm.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PageSignInForm = () => {
@@ -9,19 +9,19 @@ const PageSignInForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await axios.post(` ${process.env.REACT_APP_BE_URL}/users/sign-in`, 
-      {
-        userName,
-        userPassword,
-      });
+      const response = await axios.post(
+        `http://localhost:5000/users/sign-in`,
+        {
+          userName,
+          userPassword,
+        }
+      );
       console.log(response);
-  
+
       // Check the response status
       if (response.status === 201 || response.status === 200) {
         navigate("/products");
@@ -42,56 +42,52 @@ const PageSignInForm = () => {
     navigate("/sign-up");
   };
 
-
   return (
     <div className="login-container">
-      <div className="login-form">
-
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-        
-        <form onSubmit={handleSubmit}>
-          <div className="form-field">
 
-            <input
-              type="text"
-              id="userName"
-              name="userName"
-              placeholder="Name"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-field">
+          <input
+            className="input"
+            type="text"
+            id="userName"
+            name="userName"
+            placeholder="Name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
 
-          <div className="form-field">
-            <input
-              type="password"
-              id="userPassword"
-              name="userPassword"
-              placeholder="Password"
-              value={userPassword}
-              onChange={(e) => setUserPassword(e.target.value)}
-            />
-          </div>
-
+        <div className="form-field">
+          <input
+            className="input"
+            type="password"
+            id="userPassword"
+            name="userPassword"
+            placeholder="Password"
+            value={userPassword}
+            onChange={(e) => setUserPassword(e.target.value)}
+          />
+        </div>
+         <div>
           <button className="submit-btn" type="submit">
-            Sign In
-          </button>
+          Sign In
+        </button>
+        
+         </div>
+        
 
-          <div className="form-field" />
-
-          <div className="form-links">
-            <p onClick={handleForgotPassword}>Forgot Password?</p>
-            <p onClick={handleSignUp}> Register</p>
-          </div>
-
-
-        </form>
-
-       
-      </div>
+        <p className="p-link-text" onClick={handleForgotPassword}>
+          Forgot Password?
+        </p>
+        <p className="p-link" onClick={handleSignUp}>
+          Register
+        </p>
+      </form>
     </div>
   );
 };
 
-
 export default PageSignInForm;
+
