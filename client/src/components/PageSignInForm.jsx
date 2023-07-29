@@ -24,7 +24,7 @@ const PageSignInForm = () => {
 
       // Check the response status
       if (response.status === 201 || response.status === 200) {
-        navigate("/products");
+        navigate("/products/all-products");
       } else {
         // Handle other response statuses or errors
         setErrorMessage("Unexpected response status");
@@ -44,7 +44,7 @@ const PageSignInForm = () => {
 
   return (
     <div className="login-container">
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      
 
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
@@ -71,7 +71,7 @@ const PageSignInForm = () => {
           />
         </div>
          <div>
-          <button className="submit-btn" type="submit">
+          <button className="submit-btn" type="submit" userName={userName}>
           Sign In
         </button>
         
@@ -84,7 +84,13 @@ const PageSignInForm = () => {
         <p className="p-link" onClick={handleSignUp}>
           Register
         </p>
+<div>
+         {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
+
       </form>
+      
+     
     </div>
   );
 };

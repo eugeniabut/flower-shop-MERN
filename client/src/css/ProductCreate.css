@@ -4,21 +4,49 @@
   box-sizing: border-box;
 }
 
+
+header {
+  height: 10vh;
+
+  display: flex;
+ justify-content: space-around;
+
+}
+
+
+.links{
+ 
+    font-size: 1.8rem;
+
+  }
+  .links *{
+    padding-left: 4rem;
+    padding-right: 4rem;
+    text-decoration: none;
+  }
+  .links *:hover {
+color: rgb(26, 151, 26);
+text-decoration: underline;
+
+  }
+  
 .container {
     max-width: 500px;
-    margin: 0 auto;
+  margin-top: 4rem;
     padding: 20px;
   }
   
   h1 {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 20rem;
     margin-bottom: 3rem;
   }
   
   form {
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin-top: 2rem;
+    margin-left: 20rem;
+    margin-right: 20rem;
+   
     
   }
   
@@ -44,29 +72,20 @@
     cursor: pointer;
     font-size: 1.4rem;
     border-radius: 5px;
+    margin-left: 9vw;
   }
 
   button[type="submit"]:hover{
     background-color:rgb(26, 151, 26) ;
   }
-  .success-message{
+  .success-message,
+  .failed-message{
     font-size: 1rem;
     margin-top: 0.6rem;
   }
 
-  .links{
-    
-    margin-top: 2rem;
-    font-size: 1.6rem;
 
-  }
-  .links *{
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  .links *:hover {
-color:rgb(255, 0, 0)
-  }
-  
+
+
 
   

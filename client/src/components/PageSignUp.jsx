@@ -8,7 +8,7 @@ const PageSignUp = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [userPasswordTwo, setUserPasswordTwo] = useState(""); // Added state for repeat password
+ 
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
@@ -18,7 +18,7 @@ const PageSignUp = () => {
       userName,
       userEmail,
       userPassword,
-      userPasswordTwo,
+     
     };
 
     try {
@@ -68,8 +68,8 @@ const PageSignUp = () => {
           id="userPasswordTwo"
           name="userPasswordTwo"
           placeholder="Repeat password"
-          value={userPasswordTwo}
-          onChange={(e) => setUserPasswordTwo(e.target.value)} // Updated to setUserPasswordTwo
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)} 
         />
 
         <div>
@@ -80,7 +80,7 @@ const PageSignUp = () => {
 
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <p className="p-link-text">
-          Already have an account?{" "}
+          {" "}
           <NavLink className="p-link" to="/sign-in">
             Sign In!
           </NavLink>

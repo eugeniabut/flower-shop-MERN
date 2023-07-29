@@ -5,8 +5,10 @@ import PageSignUp from './components/PageSignUp';
 import PageMain from './components/PageMain';
 import Products from './components/Products';
 import ProductCreate from './components/ProductCreate';
-import ProductList from "./components/ProductList";
+import ProductList from "./components/ProductList.jsx";
+import Basket from './components/Basket.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
+
 
 
 
@@ -19,9 +21,11 @@ function App() {
         <Route path='/' element={<PageMain />} />
         <Route path='/sign-in' element={<PageSignInForm />}/>
         <Route path='/sign-up' element={<PageSignUp />}/>
+        <Route path='/products/basket' element={<Basket/>} />
         <Route path='/products/all-products' element={<Products/>} />
         <Route path='/products/all-products-list' element={<ProductList/>} />
         <Route path='/products/create-product' element={<ProductCreate/>} />
+     
         
       
         
