@@ -2,9 +2,8 @@ import mongoose from "mongoose";
 
 export const productSchema = new mongoose.Schema({
 
-  productImage:{
-type:String
-  },
+  productImage: String,
+  
   productName: { 
     type: String, 
     required: true },
@@ -20,9 +19,10 @@ type:String
   },
 
   available: {
-    type: String,
-    default: true,
-  },
+    type:String,
+   
+  }
   
 });
+
 export default mongoose.model("Product", productSchema);

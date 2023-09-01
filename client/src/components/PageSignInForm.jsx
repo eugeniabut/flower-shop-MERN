@@ -22,11 +22,11 @@ const PageSignInForm = () => {
       );
       console.log(response);
 
-      // Check the response status
+    
       if (response.status === 201 || response.status === 200) {
         navigate("/products/all-products");
       } else {
-        // Handle other response statuses or errors
+      
         setErrorMessage("Unexpected response status");
       }
     } catch (error) {

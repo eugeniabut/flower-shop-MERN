@@ -8,12 +8,22 @@ const PageSignUp = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [userPasswordTwo, setUserPasswordTwo] = useState("")
  
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    if (userPassword !== userPasswordTwo) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+console.log("Data being sent:", {
+  userName,
+  userEmail,
+  userPassword,
+})
     const data = {
       userName,
       userEmail,
@@ -68,8 +78,8 @@ const PageSignUp = () => {
           id="userPasswordTwo"
           name="userPasswordTwo"
           placeholder="Repeat password"
-          value={userPassword}
-          onChange={(e) => setUserPassword(e.target.value)} 
+          value={userPasswordTwo}
+          onChange={(e) => setUserPasswordTwo(e.target.value)} 
         />
 
         <div>

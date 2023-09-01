@@ -3,21 +3,25 @@ import bcrypt from "bcrypt";
 
 export const createUser = async (req, res, next) => {
   try {
-    const { userName, userEmail, userPassword, userPasswordTwo } = req.body;
+    const { userName, userEmail, userPassword} = req.body;
+
+    if (!userEmail) {
+      const err = new Error("User email is required");
+      err.statusCode = 400;
+      throw err;
+    }
+
+
 
     const alreadyExists = await User.findOne({ userEmail });
 
     if (alreadyExists) {
-      const err = new Error("User already exists");
+      const err = new Error("You already have an account! Please Login");
       err.statusCode = 400;
       throw err;
     }
 
-    if (userPassword !== userPasswordTwo) {
-      const err = new Error("Passwords do not match");
-      err.statusCode = 400;
-      throw err;
-    }
+  
 
     const saltRounds = 11;
     const hashedPassword = await bcrypt.hash(userPassword, saltRounds);
@@ -37,13 +41,20 @@ export const createUser = async (req, res, next) => {
 };
 
 //get single user
-export const getUser = async (req, res,next) => {
+
+export const getUser = async (req, res, next) => {
   try {
-   const userName = await User.find({userName})
-   res.status(201).json(userName)
-   
+    const { userName } = req.params; 
+    const user = await User.findOne({ userName });
+
+    if (!user) {
+      const err = new Error("User not found");
+      err.statusCode = 404;
+      throw err;
+    }
+
+    res.status(200).json(user);
   } catch (err) {
-    console.error('Error fetching products:', err);
+    next(err);
   }
-   next(err)
-  }
+}

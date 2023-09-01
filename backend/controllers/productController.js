@@ -1,19 +1,30 @@
-import Product from "../models/productModel.js";
+import Product from '../models/productModel.js';
 
 export const createProduct = async (req, res, next) => {
   try {
-    const { productImage, productName, productPrice,productAmount, available } = req.body;
+    const { productName, productPrice, productAmount } = req.body;
+    const productImage = req.file; 
 
+    // Check if the product name already exists in the database
+    const alreadyExist = await Product.findOne({ productName });
+    if (alreadyExist !== null) {
+      return res.status(400).json({ message: 'Product is already in the database' });
+    }
+
+    // Create a new product instance using your Mongoose model
     const newProduct = new Product({
-      productImage,
+      productImage: {
+        filename: req.file,
+        data: req.file.buffer.toString('base64'),
+      },
       productName,
       productPrice,
       productAmount,
-      available,
     });
 
+    // Save the new product to the database
     const createdProduct = await newProduct.save();
-    
+
     if (!createdProduct) {
       throw new Error('Failed to create product');
     }
@@ -21,18 +32,7 @@ export const createProduct = async (req, res, next) => {
     res.status(201).json(createdProduct);
   } catch (error) {
     console.error('Error creating product:', error);
-    res.status(500).json({ message: error.message });
-  }
-};
-
-export const getAllProducts = async (req, res,next) => {
-  try {
-   const allProducts = await Product.find()
-   res.status(201).json(allProducts)
-   
-  } catch (err) {
-    console.error('Error fetching products:', err);
-   next(err)
+    res.status(500).json({ message: 'Error creating product' });
   }
 };
 

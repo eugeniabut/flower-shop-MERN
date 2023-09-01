@@ -5,6 +5,7 @@ import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js"
 import connectDB from "./db.js"
 
+
 dotenv.config();
 
 const app = express();

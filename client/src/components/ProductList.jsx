@@ -6,6 +6,7 @@ const ProductList = () => {
   const[product,setProduct]=useState("")
   const [editProduct, setEditProduct] = useState({
     _id: '',
+    productImage:"",
     productName: '',
     productPrice: '',
     productAmount: '',
@@ -45,6 +46,7 @@ const ProductList = () => {
       // Reset the edited values
       setEditProduct({
         _id: '',
+      productImage:"",
         productName: '',
         productPrice: '',
         productAmount: '',
