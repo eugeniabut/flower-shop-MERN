@@ -6,45 +6,39 @@ import { NavLink } from "react-router-dom";
 import FileBase64 from "react-file-base64";
 
 const ProductCreate = () => {
-  const [productImage, setProductImage] = useState("");
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productAmount, setProductAmount] = useState("");
+  const [postData, setPostData] = useState({
+    productName: "",
+    productPrice: "",
+    productAmount: "",
+    productImage: "",
+  });
 
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleImageUpload = (file) => {
-    setProductImage(file.base64);
-  };
-  const formData = new FormData();
-
-  const submitHandler = async () => {
-    formData.append("productImage", productImage);
-    formData.append("productName", productName);
-    formData.append("productPrice", productPrice);
-    formData.append("productAmount", productAmount);
-
+  const submitHandler = async (e) => {
+       e.preventDefault();
     try {
-      const response = await axios.post(
+   
+     
+      await axios.post(
         `${process.env.REACT_APP_BE_URL}/products/create-product`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        postData
       );
-
-      // Clear form fields and state
-      setProductImage("");
-      setProductName("");
-      setProductPrice("");
-      setProductAmount("");
+      
+      setPostData({
+        productName: "",
+        productPrice: "",
+        productAmount: "",
+        productImage: "",
+      });
+      setMessage("Product created and added to Product List")
+      setErrorMessage(""); 
     } catch (error) {
       console.log("Error creating product:", error);
-      setErrorMessage("Error creating product");
       setMessage("");
+      setErrorMessage("Error creating product");
+      
     }
   };
 
@@ -60,50 +54,68 @@ const ProductCreate = () => {
       </header>
       <div className="container">
         <h1>Create Product</h1>
-        <form onSubmit={submitHandler} encType="multipart/form-data">
+        <form onSubmit={submitHandler}>
           <div>
             <label htmlFor="productName">Product Name:</label>
             <input
               type="text"
               id="productName"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
+              name="productName"
+              value={postData.productName}
+              onChange={(e) =>
+                setPostData({ ...postData, productName: e.target.value })
+              }
               required
             />
           </div>
           <div>
             <label htmlFor="productPrice">Product Price:</label>
             <input
+              name="productPrice"
               type="number"
               id="productPrice"
-              value={productPrice}
-              onChange={(e) => setProductPrice(e.target.value)}
+              value={postData.productPrice}
+              onChange={(e) =>
+                setPostData({ ...postData, productPrice: e.target.value })
+              }
               required
             />
           </div>
           <div>
             <label htmlFor="productAmount">Product Amount:</label>
             <input
+              name="productAmount"
               type="number"
               id="productAmount"
-              value={productAmount}
-              onChange={(e) => setProductAmount(e.target.value)}
+              value={postData.productAmount}
+              onChange={(e) =>
+                setPostData({ ...postData, productAmount: e.target.value })
+              }
               required
             />
           </div>
           <div>
             <label>Product Image:</label>
             <FileBase64
-              name="productImage"
+              //name="productImage" I do not need it, will not work!
               type="file"
               multiple={false}
-              onDone={handleImageUpload}
+             
+              onDone={({ base64 }) =>
+                setPostData({ ...postData, productImage: base64 })
+              }
             />
-            {productImage && <img src={productImage} alt="Product" />}
+            {postData.productImage && (
+              <img src={postData.productImage} alt="Product" />
+            )}
           </div>
 
           <button type="submit">Create Product</button>
         </form>
+        
+        {message && <div className="success-message">{message}</div>}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
+
       </div>
     </div>
   );
