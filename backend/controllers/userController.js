@@ -20,9 +20,7 @@ export const createUser = async (req, res, next) => {
       err.statusCode = 400;
       throw err;
     }
-
-  
-
+    
     const saltRounds = 11;
     const hashedPassword = await bcrypt.hash(userPassword, saltRounds);
 

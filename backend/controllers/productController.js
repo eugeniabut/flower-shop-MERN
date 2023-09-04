@@ -1,22 +1,21 @@
-import Product from '../models/productModel.js';
+import Product from "../models/productModel.js";
 
 export const createProduct = async (req, res, next) => {
   try {
-    const { productName, productPrice, productAmount } = req.body;
-    const productImage = req.file; 
+    console.log("request body:", req.body);
+    const { productName, productPrice, productAmount, productImage } = req.body;
 
     // Check if the product name already exists in the database
     const alreadyExist = await Product.findOne({ productName });
     if (alreadyExist !== null) {
-      return res.status(400).json({ message: 'Product is already in the database' });
+      return res
+        .status(400)
+        .json({ message: "Product is already in the database" });
     }
 
-    // Create a new product instance using your Mongoose model
+    //Create a new product instance using your Mongoose model
     const newProduct = new Product({
-      productImage: {
-        filename: req.file,
-        data: req.file.buffer.toString('base64'),
-      },
+      productImage,
       productName,
       productPrice,
       productAmount,
@@ -26,27 +25,25 @@ export const createProduct = async (req, res, next) => {
     const createdProduct = await newProduct.save();
 
     if (!createdProduct) {
-      throw new Error('Failed to create product');
+      throw new Error("Failed to create product");
     }
 
     res.status(201).json(createdProduct);
   } catch (error) {
-    console.error('Error creating product:', error);
-    res.status(500).json({ message: 'Error creating product' });
+    console.error("Error creating product:", error);
+    res.status(500).json({ message: "Error creating product" });
   }
 };
 
-export const getSingleProduct = async (req, res,next) => {
+export const getSingleProduct = async (req, res, next) => {
   try {
-   const allProducts = await Product.findOne({productName})
-   res.status(201).json(allProducts)
-   
+    const allProducts = await Product.findOne({ productName });
+    res.status(201).json(allProducts);
   } catch (err) {
-    console.error('Error fetching products:', err);
-   next(err)
+    console.error("Error fetching products:", err);
+    next(err);
   }
 };
-
 
 export const deleteSingleProduct = async (req, res, next) => {
   try {
@@ -55,16 +52,15 @@ export const deleteSingleProduct = async (req, res, next) => {
     const deletedProduct = await Product.findByIdAndDelete(productId);
 
     if (!deletedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
-    res.status(200).json({ message: 'Product deleted successfully' });
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (err) {
-    console.error('Error deleting product:', err);
+    console.error("Error deleting product:", err);
     next(err);
   }
 };
-
 
 export const editProduct = async (req, res) => {
   try {
@@ -75,7 +71,7 @@ export const editProduct = async (req, res) => {
     const product = await Product.findByIdAndUpdate(id);
 
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     // Update the product fields
@@ -88,7 +84,7 @@ export const editProduct = async (req, res) => {
 
     res.json(product); // Return the updated product as the response
   } catch (error) {
-    console.error('Error updating product:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("Error updating product:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };

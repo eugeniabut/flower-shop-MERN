@@ -20,7 +20,6 @@ export const productSchema = new mongoose.Schema({
 
   available: {
     type:String,
-   
   }
   
 });

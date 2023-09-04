@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 import "../css/ProductCreate.css";
 import { NavLink } from "react-router-dom";
 
 import FileBase64 from "react-file-base64";
 
 const ProductCreate = () => {
-  const [productImage, setProductImage] = useState('');
-  const [productName, setProductName] = useState('');
-  const [productPrice, setProductPrice] = useState('');
-  const [productAmount, setProductAmount] = useState('');
+  const [productImage, setProductImage] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productAmount, setProductAmount] = useState("");
 
-  const [message, setMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleImageUpload = (base64) => {
-    setProductImage({ file: base64 });
+  const handleImageUpload = (file) => {
+    setProductImage(file.base64);
   };
-  
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const formData = new FormData();
 
-    const formData = new FormData();
-    formData.append('productImage', productImage.file);
-    formData.append('productName', productName);
-    formData.append('productPrice', productPrice);
-    formData.append('productAmount', productAmount);
+  const submitHandler = async () => {
+    formData.append("productImage", productImage);
+    formData.append("productName", productName);
+    formData.append("productPrice", productPrice);
+    formData.append("productAmount", productAmount);
 
     try {
       const response = await axios.post(
@@ -33,22 +31,20 @@ const ProductCreate = () => {
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
       // Clear form fields and state
-      setProductImage('');
-      setProductName('');
-      setProductPrice('');
-      setProductAmount('');
-
-      setMessage('Product added to Database. See Product List');
+      setProductImage("");
+      setProductName("");
+      setProductPrice("");
+      setProductAmount("");
     } catch (error) {
-      console.log('Error creating product:', error);
-      setErrorMessage('Error creating product');
-      setMessage('');
+      console.log("Error creating product:", error);
+      setErrorMessage("Error creating product");
+      setMessage("");
     }
   };
 
@@ -56,13 +52,13 @@ const ProductCreate = () => {
     <div>
       <header>
         <h2>Administrator</h2>
-        <div className='links'>
-          <NavLink to='/products/all-products-list'>Product List</NavLink>
-          <NavLink to='/products/all-products'>Shop</NavLink>
-          <NavLink to='/'>Logout</NavLink>
+        <div className="links">
+          <NavLink to="/products/all-products-list">Product List</NavLink>
+          <NavLink to="/products/all-products">Shop</NavLink>
+          <NavLink to="/">Logout</NavLink>
         </div>
       </header>
-      <div className='container'>
+      <div className="container">
         <h1>Create Product</h1>
         <form onSubmit={submitHandler} encType="multipart/form-data">
           <div>
@@ -98,14 +94,12 @@ const ProductCreate = () => {
           <div>
             <label>Product Image:</label>
             <FileBase64
-               name="productImage"
-               type="file"
-               multiple={false}
-               onDone={handleImageUpload}
-                />
-            {productImage && (
-              <img src={productImage.base64} alt="Selected" />
-            )}
+              name="productImage"
+              type="file"
+              multiple={false}
+              onDone={handleImageUpload}
+            />
+            {productImage && <img src={productImage} alt="Product" />}
           </div>
 
           <button type="submit">Create Product</button>
