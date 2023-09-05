@@ -45,6 +45,16 @@ export const getSingleProduct = async (req, res, next) => {
   }
 };
 
+export const getAllProducts = async (req, res, next) => {
+  try {
+    const allProducts = await Product.find();
+    res.status(201).json(allProducts);
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    next(err);
+  }
+};
+
 export const deleteSingleProduct = async (req, res, next) => {
   try {
     const productId = req.params.id;

@@ -5,7 +5,7 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const[product,setProduct]=useState("")
   const [editProduct, setEditProduct] = useState({
-    _id: '',
+  
     productImage:"",
     productName: '',
     productPrice: '',
@@ -45,7 +45,7 @@ const ProductList = () => {
 
       // Reset the edited values
       setEditProduct({
-        _id: '',
+        
       productImage:"",
         productName: '',
         productPrice: '',
@@ -79,7 +79,7 @@ const ProductList = () => {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+          <th scope="col">Product Image</th>
             <th scope="col">Product Name</th>
             <th scope="col">Price</th>
             <th scope="col">Amount</th>
@@ -89,7 +89,9 @@ const ProductList = () => {
         <tbody>
           {products.map((product, index) => (
             <tr key={product._id}>
-              <th scope="row">{index + 1}</th>
+             <td> {product.productImage && (
+                <img src={product.productImage} alt={product.productName} className="product-list-image" />
+              )}</td>
               <td>{product.productName}</td>
               <td>{product.productPrice}</td>
               <td>{product.productAmount}</td>

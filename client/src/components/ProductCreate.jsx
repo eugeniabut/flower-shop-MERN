@@ -17,28 +17,27 @@ const ProductCreate = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = async (e) => {
-       e.preventDefault();
+    e.preventDefault();
     try {
-   
-     
       await axios.post(
         `${process.env.REACT_APP_BE_URL}/products/create-product`,
         postData
       );
-      
+
       setPostData({
         productName: "",
         productPrice: "",
         productAmount: "",
         productImage: "",
       });
-      setMessage("Product created and added to Product List")
-      setErrorMessage(""); 
+      setMessage("Product is created. See Product List");
+      setErrorMessage("");
     } catch (error) {
       console.log("Error creating product:", error);
       setMessage("");
-      setErrorMessage("Error creating product");
-      
+      setErrorMessage(
+        error.response?.data?.message || "Error creating product"
+      );
     }
   };
 
@@ -54,68 +53,69 @@ const ProductCreate = () => {
       </header>
       <div className="container">
         <h1>Create Product</h1>
-        <form onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="productName">Product Name:</label>
-            <input
-              type="text"
-              id="productName"
-              name="productName"
-              value={postData.productName}
-              onChange={(e) =>
-                setPostData({ ...postData, productName: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="productPrice">Product Price:</label>
-            <input
-              name="productPrice"
-              type="number"
-              id="productPrice"
-              value={postData.productPrice}
-              onChange={(e) =>
-                setPostData({ ...postData, productPrice: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="productAmount">Product Amount:</label>
-            <input
-              name="productAmount"
-              type="number"
-              id="productAmount"
-              value={postData.productAmount}
-              onChange={(e) =>
-                setPostData({ ...postData, productAmount: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label>Product Image:</label>
-            <FileBase64
-              //name="productImage" I do not need it, will not work!
-              type="file"
-              multiple={false}
-             
-              onDone={({ base64 }) =>
-                setPostData({ ...postData, productImage: base64 })
-              }
-            />
-            {postData.productImage && (
-              <img src={postData.productImage} alt="Product" />
-            )}
-          </div>
+        <div className="internal-container">
+        <div className="form-image">
+          {postData.productImage && (
+            <img src={postData.productImage} alt="Product" />
+          )}
+        </div>
+        <div className="form">
+          <form onSubmit={submitHandler}>
+            <div className="input">
+              <label htmlFor="productName">Product Name:</label>
+              <input
+                type="text"
+                name="productName"
+                value={postData.productName}
+                onChange={(e) =>
+                  setPostData({ ...postData, productName: e.target.value })
+                }
+              />
+            </div>
+            <div className="input">
+              <label htmlFor="productPrice">Product Price:</label>
+              <input
+                name="productPrice"
+                type="number"
+                value={postData.productPrice}
+                onChange={(e) =>
+                  setPostData({ ...postData, productPrice: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="input">
+              <label htmlFor="productAmount">Product Amount:</label>
+              <input
+                name="productAmount"
+                type="number"
+                value={postData.productAmount}
+                onChange={(e) =>
+                  setPostData({ ...postData, productAmount: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="input">
+              <label>Product Image:</label>
+              <FileBase64
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) =>
+                  setPostData({ ...postData, productImage: base64 })
+                }
+              />
+            </div>
 
-          <button type="submit">Create Product</button>
-        </form>
-        
-        {message && <div className="success-message">{message}</div>}
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
-
+            <button type="submit">Create Product</button>
+            
+          </form>
+ {message && <div className="success-message">{message}</div>}
+   {errorMessage && <div className="error-message">{errorMessage}</div>}
+        </div>
+       
+      
+      </div>
       </div>
     </div>
   );
