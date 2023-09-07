@@ -3,75 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-  
-body {
-  margin: 0;
-  padding: 0;
-  
+
+.shop-btn-container{
+  position: absolute;
+  top: 40%;
+  left:40%;
 }
-
-.body-container{
-  width: 100vw;
-  background-image: url("../images/heroImage.jpg");
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-header {
-  height: 10vh;
-  padding-top: 2vh;
-  display: flex;
- justify-content: space-between;
-  background-color: #f2f2f2;
-}
-  
-  
-.logo,
-  .product-link,
-  .sign-in-button {
-
-    font-size: 2rem;
-  }
-  .logo {
-    font-family: cursive;
-   font-size: 2.4rem;
-  }
- 
-  .product-link{
-    color: black;
-    text-decoration: none;
-   
-  }
-
-  .product-link:hover{
-    color: black;
-    text-decoration: underline;
-    color: #274603;
-   
-  }
- 
-  
-  .sign-in-button {
-    padding: 5px 10px;
-    border:2px solid #b063b1;
-    font-size: 1.8rem;
-    color:black;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-   
-  }
-  
-  .sign-in-button:hover {
-    background-color: #e7e7e7;
-  }
-
-
-  .shop-btn {
-  
+.shop-btn {
   padding: 10px 20px;
   background-color: #f2f2f2;
   color: #b063b1;
@@ -83,21 +21,9 @@ header {
   }
 
   .shop-btn:hover{
-    background-color: #e7e7e7;
-color: #274603;
+  background-color: #31ef14;
+  color: #050505;
+  border:1px solid #050505;
   }
   
-  @media (max-width: 768px) {
-    header {
-      height: auto;
-      flex-direction: column;
-    
-    }
-    .logo,
-    .product-link,
-    .sign-in-button {
-     
-      margin-top: 1 rem;
-      margin-bottom: 1.4rem;
-    }
-  }
+ 

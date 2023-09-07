@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, NavLink } from 'react-router-dom';
 
+import Header from './Header';
 import Basket from './Basket';
 import '../css/Products.css';
 
-const Products = ({ userName }) => {
+const Products = () => {
   const [products, setProducts] = useState([]);
   const [basket, setBasket] = useState([]);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  
 
   useEffect(() => {
     axios.get('http://localhost:5000/products/all-products')
@@ -21,11 +21,6 @@ const Products = ({ userName }) => {
     setBasket([...basket, parsedProduct]);
   };
 
-  const navigate = useNavigate();
-  const handleSignOut = () => {
-    setIsSignedIn(false); 
-    navigate('/');
-  };
 
   const handleDeleteItem = (index) => {
     const updatedBasket = [...basket];
@@ -36,24 +31,9 @@ const Products = ({ userName }) => {
 
  return (
     <div>
-      <header>
-        {userName ? <div className="username">Hello {userName}!</div> : <div>Nice shopping!</div>}
+   <Header/>
 
-       
-
-     
-
-        {isSignedIn && (
-          <div>
-            <button className="sign-out-button" onClick={handleSignOut}>
-              Sign Out
-            </button>
-          </div>
-        )}
-      </header>
-
-
-      <body>
+      <div>
         <div className="products">
           {products.map((product) => (
             <div key={product._id} className="card" style={{ width: '18rem' }}>
@@ -75,7 +55,7 @@ const Products = ({ userName }) => {
           productName={basket[basket.length - 1]?.productName} 
           productPrice={basket[basket.length - 1]?.productPrice}      />
        
-      </body>
+      </div>
     </div>
   );
 };

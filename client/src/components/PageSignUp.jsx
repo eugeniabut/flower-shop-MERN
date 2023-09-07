@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-import "../css/PageSignUp.css";
+import "../css/SignForm.css";
+import Header from "./Header";
+import Body from "./Body";
 
 const PageSignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -40,6 +42,9 @@ console.log("Data being sent:", {
   };
 
   return (
+    <div>
+    <Header/>
+    <Body/>
     <div className="login-container">
       <form className="form" onSubmit={submitHandler}>
         <input
@@ -96,6 +101,7 @@ console.log("Data being sent:", {
           </NavLink>
         </p>
       </form>
+    </div>
     </div>
   );
 };

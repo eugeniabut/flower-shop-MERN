@@ -1,57 +1,42 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
- body {
-  height: 100%;
- 
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f2f2f2;
-
-
-}
 
 .login-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 50vh;
   background-color: #f2f2f2;
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 26%;
+  top: 30%;
+  right: 30%;
+  width: 40%;
+  border-radius: 15px;
+  border: 2px solid #b063b1;
+  padding-top: 3rem;
 }
-
+  
 .form {
   display: flex;
   flex-direction: column;
-  margin: 0 1rem;
+  align-items: center;
+  margin: 1rem;
 }
 
+ 
 .input {
   border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
   padding: 0.5rem;
 }
 
 .p-link-text {
+  margin-top: 0.5rem;
   color: blue;
   font-size: 1.4rem;
 }
 
 .p-link {
   color: rgb(209, 32, 222) !important;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .p-link:hover {
@@ -59,16 +44,16 @@ body {
 }
 
 .submit-btn {
-  padding: 10px;
+
   background-color: rgb(209, 32, 222) !important;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  font-size: 1rem;
-  
+margin-bottom: 0.5rem;
+  font-size: 1rem ;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .submit-btn:hover {

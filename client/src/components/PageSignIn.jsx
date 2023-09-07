@@ -1,17 +1,23 @@
-import "../css/PageSignInForm.css";
+import React from "react";
+import "../css/SignForm.css";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header.jsx"
+import Body from "./Body";
+import { AuthContext } from "./AuthContext.jsx";
 
-const PageSignInForm = () => {
+
+const PageSignIn = () => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { handleSignIn} = useContext(AuthContext);
 
+  const handleSubmit= async (e) => {
+    e.preventDefault()
     try {
       const response = await axios.post(
         `http://localhost:5000/users/sign-in`,
@@ -20,21 +26,23 @@ const PageSignInForm = () => {
           userPassword,
         }
       );
-      console.log(response);
-
-    
+  
       if (response.status === 201 || response.status === 200) {
+
+        // Set the userName in context when the user signs in
+        handleSignIn(response.data.userName);
         navigate("/products/all-products");
       } else {
-      
         setErrorMessage("Unexpected response status");
       }
     } catch (error) {
       setErrorMessage("Please try again or register");
     }
   };
+  
 
-  const handleForgotPassword = () => {
+  const handleForgotPassword = (e) => {
+    e.preventDefault()
     navigate("/forgot-password");
   };
 
@@ -43,6 +51,9 @@ const PageSignInForm = () => {
   };
 
   return (
+    <div>
+       <  Header  />
+       <Body/>
     <div className="login-container">
       
 
@@ -51,7 +62,7 @@ const PageSignInForm = () => {
           <input
             className="input"
             type="text"
-            id="userName"
+           
             name="userName"
             placeholder="Name"
             value={userName}
@@ -63,7 +74,7 @@ const PageSignInForm = () => {
           <input
             className="input"
             type="password"
-            id="userPassword"
+       
             name="userPassword"
             placeholder="Password"
             value={userPassword}
@@ -71,7 +82,7 @@ const PageSignInForm = () => {
           />
         </div>
          <div>
-          <button className="submit-btn" type="submit" userName={userName}>
+          <button className="submit-btn" type="submit">
           Sign In
         </button>
         
@@ -92,8 +103,9 @@ const PageSignInForm = () => {
       
      
     </div>
+    </div>
   );
 };
 
-export default PageSignInForm;
+export default PageSignIn;
 

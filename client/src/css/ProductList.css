@@ -3,13 +3,43 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
-  
-  header {
-    height: 10vh;
-  width: 100vw;
-    display: flex;
-   justify-content: space-around;
-  
+.table {
+  margin-top: 2rem;
+}
+tr:nth-child(odd) {
+  background-color: #d05252; /* Odd row background color */
+}
+tr:nth-child(even) {
+  background-color: #585988; /* Even row background color */
+}
+
+  .table-header * {
+font-size: 1.6rem;
   }
-  
+.table-body * {
+  font-size: 1.4rem;
+}
+  .table-image {
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+  }
+ .btn-primary {
+  margin-right: 1rem;
+ }
+
+.edit-form{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+align-items: center;
+
+}
+.edit-product-input {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: grid;
+}
+form{
+  margin-left: 26rem;
+}
