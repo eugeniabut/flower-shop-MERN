@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../css/Header.css";
 
+
 const Header = () => {
   const { isSignedIn, userName,handleSignOut, handleSignIn} = useContext(AuthContext); 
  const navigate = useNavigate()
@@ -28,7 +29,7 @@ return (
         </>
       ) : (
         <Link className="product-link" to="/products/create-product">
-          Products
+          Administration
         </Link>
       )}
     </div>

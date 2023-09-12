@@ -13,7 +13,7 @@ export const createProduct = async (req, res, next) => {
         .json({ message: "Product is already in the database" });
     }
 
-    //Create a new product instance using your Mongoose model
+    //Create a new product 
     const newProduct = new Product({
       productImage,
       productName,
@@ -75,7 +75,7 @@ export const deleteSingleProduct = async (req, res, next) => {
 export const editProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { productName, productPrice, productAmount } = req.body;
+    const { productImage, productName, productPrice, productAmount } = req.body;
 
     // Find the product by ID
     const product = await Product.findByIdAndUpdate(id);
@@ -85,6 +85,7 @@ export const editProduct = async (req, res) => {
     }
 
     // Update the product fields
+    product.productImage = productImage;
     product.productName = productName;
     product.productPrice = productPrice;
     product.productAmount = productAmount;

@@ -6,12 +6,10 @@
 
 
 .body-container{
+
   width: 100vw;
-  background-image: url("../images/heroImage.jpg");
+  background-image: url("./images/heroImage.jpg");
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+ 
 }

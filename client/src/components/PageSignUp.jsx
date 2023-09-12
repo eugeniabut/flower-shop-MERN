@@ -46,7 +46,11 @@ console.log("Data being sent:", {
     <Header/>
     <Body/>
     <div className="login-container">
+    <button type="button" className="btn-close-form" onClick={()=>{navigate("/#")}} >
+  <span >×</span>
+</button>
       <form className="form" onSubmit={submitHandler}>
+      <div className="form-field">
         <input
           className="input"
           type="name"
@@ -56,7 +60,8 @@ console.log("Data being sent:", {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
-
+</div>
+<div className="form-field">
         <input
           className="input"
           type="email"
@@ -66,7 +71,8 @@ console.log("Data being sent:", {
           value={userEmail}
           onChange={(e) => setUserEmail(e.target.value)}
         />
-
+</div>
+<div className="form-field">
         <input
           className="input"
           type="password"
@@ -76,7 +82,8 @@ console.log("Data being sent:", {
           value={userPassword}
           onChange={(e) => setUserPassword(e.target.value)}
         />
-
+ </div>       
+<div className="form-field">
         <input
           className="input"
           type="password"
@@ -86,7 +93,7 @@ console.log("Data being sent:", {
           value={userPasswordTwo}
           onChange={(e) => setUserPasswordTwo(e.target.value)} 
         />
-
+</div>
         <div>
           <button className="submit-btn" type="submit">
             Register

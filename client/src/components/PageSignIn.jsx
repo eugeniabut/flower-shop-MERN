@@ -49,6 +49,7 @@ const PageSignIn = () => {
   const handleSignUp = () => {
     navigate("/sign-up");
   };
+ 
 
   return (
     <div>
@@ -56,7 +57,9 @@ const PageSignIn = () => {
        <Body/>
     <div className="login-container">
       
-
+    <button type="button" className="btn-close-form" onClick={()=>{navigate("/#")}} >
+  <span >×</span>
+</button>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-field">
           <input

@@ -35,18 +35,15 @@ body {
 
 
 .sign-out-button:hover{
-  background-color: #e7e7e7;
+  background-color: rgb(204,255,204);
 }
 
 
 
 .products {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); 
-  grid-auto-rows: minmax(250px, 1fr); 
-  gap: 20px; 
-  justify-items: center; 
-  padding: 20px;
+ display: flex;justify-content: center;
+ flex-wrap: wrap;
+
 }
 .card {
   border: 1px solid #ccc;
@@ -55,6 +52,7 @@ body {
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  margin: 1rem;
 }
 
 .card-img-top {
@@ -81,8 +79,8 @@ body {
 .card-btn {
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
-  background-color: #b063b1;
-
+  background-color: rgb(209, 32, 222);
+color: white;
   border: none;
   border-radius: 5px;
   padding: 8px 16px;
@@ -91,8 +89,8 @@ body {
 }
 
 .card-btn:hover {
-  background-color: #620372;
-  color: #fff;
+  background-color: rgb(57, 222, 42);
+color:black
 }
 
 
