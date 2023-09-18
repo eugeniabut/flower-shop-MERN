@@ -27,11 +27,11 @@ app.use((error, req, res, next) => {
   error.message = error.message || "Something went wrong";
   res.status(error.statusCode).send(error.message);
 });
-//just control route for postman
+//control route for postman
 app.get("/", (req, res) => {
   res.send("Welcome User ");
 });
-//connection to shop in MongoDB
+//connection to shop database MongoDB
 connectDB();
 
 app.listen(5000, () => {
