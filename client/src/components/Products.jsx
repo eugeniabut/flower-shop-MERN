@@ -41,7 +41,7 @@ const Products = () => {
                 <img src={product.productImage} alt={product.productName} className="card-img-top" />
               )}
               <h5 className="card-title">{product.productName}</h5>
-              <p className="card-text">${product.productPrice}</p>
+              <p className="card-text">€{product.productPrice}</p>
               <div>
                 <button className="card-btn btn-primary" onClick={() => addToBasket(product)}>
                   Add to Basket

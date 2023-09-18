@@ -7,7 +7,7 @@ import "../css/Header.css";
 
 
 const Header = () => {
-  const { isSignedIn, userName,handleSignOut, handleSignIn} = useContext(AuthContext); 
+  const { isSignedIn, userName,handleSignOut} = useContext(AuthContext); 
  const navigate = useNavigate()
 
  const handleAuthentication = () => {
