@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  
+body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  
+  
+}
+
+
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-right: 10px;
+}
+
+
+.sign-out-button {
+  padding: 5px 10px;
+  border:2px solid #b063b1;
+  font-size: 1.8rem;
+  color:black;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+
+.sign-out-button:hover{
+  background-color: rgb(204,255,204);
+}
+
+
+
+.products {
+ display: flex;justify-content: center;
+ flex-wrap: wrap;
+
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 1rem;
+}
+
+.card-img-top {
+
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid  #b063b1;
+  background-color: #e7e7e7;
+
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.card-text {
+  font-size: 1.6rem;
+  
+}
+
+.card-btn {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  background-color: rgb(209, 32, 222);
+color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-btn:hover {
+  background-color: rgb(57, 222, 42);
+color:black
+}
+
+
+@media (max-width: 768px) {
+  header {
+    height: auto;
+    flex-direction: column;
+  
+  }
+  .logo,
+  .product-link,
+  .sign-in-button {
+   
+    margin-top: 1 rem;
+    margin-bottom: 1.4rem;
+  }
+}
